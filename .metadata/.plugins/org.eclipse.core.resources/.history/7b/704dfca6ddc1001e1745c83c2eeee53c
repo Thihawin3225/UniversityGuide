@@ -1,0 +1,44 @@
+package crud;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/UpdateUser")
+public class UpdateUser extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        
+        try {
+            // Retrieve user data from the form
+//            int userId = Integer.parseInt(request.getParameter("id"));
+            String uniname = request.getParameter("uniname");
+            String location = request.getParameter("location");
+            String mark = request.getParameter("mark");
+            String link = request.getParameter("link");
+
+            // Create a new User object
+//            User user = new User(userId, uniname, location, mark, link);
+//
+//            // Update the user in the database
+//            UserDAO userDAO = new UserDAO();
+//            userDAO.updateUser(user);
+
+            // Redirect to the user list page or any other page you desire
+            response.sendRedirect(request.getContextPath() + "/AdminLTE/loginAndregister/home.jsp");
+        } catch (NumberFormatException e) {
+            // Handle the case where ID cannot be parsed as an integer
+            out.println("Invalid user ID");
+        } catch (Exception e) {
+            // Handle other exceptions or errors
+            out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}

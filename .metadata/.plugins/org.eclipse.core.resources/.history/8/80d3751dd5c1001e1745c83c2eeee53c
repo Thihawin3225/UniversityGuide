@@ -1,0 +1,32 @@
+package crud;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class InsertUser
+ */
+@WebServlet("/insertUser")
+public class InsertUser extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Retrieve user data from the form
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+
+        // Create a new User object
+        User user = new User(username, email);
+
+        // Insert the user into the database
+        UserDAO userDAO = new UserDAO();
+        userDAO.insertUser(user);
+
+        // Redirect to the user list page or any other page you desire
+        response.sendRedirect("index.jsp");
+    }
+}

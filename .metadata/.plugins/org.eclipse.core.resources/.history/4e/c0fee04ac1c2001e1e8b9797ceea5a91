@@ -1,0 +1,77 @@
+package crud.image;
+
+public class User {
+    private int id;
+    private String uniname;
+    private String location;
+    private String description;
+    private String logo;
+    private String image;
+    
+    
+	public User(int id, String uniname, String location, String description, String logo, String image) {
+		super();
+		this.id = id;
+		this.uniname = uniname;
+		this.location = location;
+		this.description = description;
+		this.logo = logo;
+		this.image = image;
+	}
+
+
+	public User(String uniname, String location, String description, String logo, String image) {
+		super();
+		this.uniname = uniname;
+		this.location = location;
+		this.description = description;
+		this.logo = logo;
+		this.image = image;
+	}
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getUniname() {
+		return uniname;
+	}
+	public void setUniname(String uniname) {
+		this.uniname = uniname;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+    
+    
+    
+	
+
+    
+    
+}
+

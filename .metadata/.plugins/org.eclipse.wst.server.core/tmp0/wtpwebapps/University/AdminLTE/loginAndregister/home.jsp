@@ -131,6 +131,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="add.jsp" class="btn btn-warning">
               Create Blog
           </a>
+           <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="btn btn-warning">
+              Go To User Page 
+          </a>
       </div>
     </div>
     <!-- /.content-header -->

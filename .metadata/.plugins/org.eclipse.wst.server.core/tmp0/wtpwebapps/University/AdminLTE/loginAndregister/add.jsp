@@ -56,7 +56,7 @@
   </div>
 
   <div class="mb-3 text-center">
-    <a href="login.jsp" class="btn btn-danger btn-block">Back</a>
+    <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
   </div>
 </form>
 

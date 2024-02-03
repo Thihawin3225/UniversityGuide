@@ -36,15 +36,16 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../index3.html" class="nav-link">Home</a>
+        <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
+    
   </nav>
   <!-- /.navbar -->
-
+	
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -62,18 +63,6 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -95,7 +84,7 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
 		%>
             <% for(User user : userList) {%>
               <li class="nav-item">
-                <a href="../index.html" class="nav-link">
+                <a href="<%= user.getLink()%>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p><%= user.getLocation() %></p>
                 </a>
@@ -104,6 +93,29 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
             </ul>
           </li>
           <%} %>
+                   <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="simple.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>UniName/Location</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="location.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mark</p>
+                </a>
+              </li>
+            </ul>
+          </li>
             </ul>
           </li>
           </ul>
@@ -112,7 +124,6 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
     </div>
     <!-- /.sidebar -->
   </aside>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   </div>

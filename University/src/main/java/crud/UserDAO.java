@@ -199,5 +199,37 @@ public List<User> getUserByName(String name) {
 
     return userList;
 }
+
+public List<User> searchUsersWithMinMark(String minMark) {
+    List<User> userList = new ArrayList<>();
+
+    try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+         PreparedStatement preparedStatement = connection.prepareStatement(
+                 "SELECT * FROM user WHERE mark < ?")) {
+
+        // Set the minimum mark condition
+        preparedStatement.setString(1, minMark);
+
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String uniname = resultSet.getString("uniname");
+                String location = resultSet.getString("location");
+                String mark = resultSet.getString("mark");
+                String link = resultSet.getString("link");
+
+                User user = new User(id, uniname, location, mark, link);
+                userList.add(user);
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return userList;
 }
+
+}
+
 

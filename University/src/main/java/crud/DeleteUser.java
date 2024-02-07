@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DeleteUser
  */
-@WebServlet("/deleteUser")
+@WebServlet("/delete")
 public class DeleteUser extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

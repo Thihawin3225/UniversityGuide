@@ -1,11 +1,8 @@
 INDEX VERSION 1.4+C:\Users\Acer\Desktop\UniversityGuide\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2904876209.index
-1728713171.index
-1728713171.index
 1864433727.index
-2469812109.index
-511793073.index
-361631813.index
-2512139121.index
 1004914047.index
-2949057239.index
+361631813.index
+2469812109.index
+2512139121.index
+2904876209.index
+511793073.index

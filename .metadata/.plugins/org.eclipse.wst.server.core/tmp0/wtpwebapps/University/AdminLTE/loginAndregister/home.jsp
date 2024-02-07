@@ -128,11 +128,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
       <div>
-          <a href="add.jsp" class="btn btn-warning">
-              Create Blog
-          </a>
            <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="btn btn-warning">
               Go To User Page 
+          </a>
+          <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/home.jsp" class="btn btn-warning">
+              Go to Page Create 
           </a>
       </div>
     </div>
@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Bordered Table</h3>
+              <h3 class="card-title">Page Create Blog</h3>
             </div>
 
 
@@ -171,7 +171,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <td><%= user.getMark() %>
                 <td><%= user.getLink() %></td>
                 <td><a href="edit.jsp?id=<%= user.getId() %>">Edit</a>
-                <a href="${pageContext.request.contextPath}/deleteUser?id=<%= user.getId() %>">Delete</a>
+                
 </td>
             </tr>
         <% } %>
@@ -213,11 +213,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
   </footer>
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
 <script src="..//plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

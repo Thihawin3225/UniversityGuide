@@ -1,6 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="pagecreate.pageUser" %>
+<%@ page import="pagecreate.pageUserDAO" %>
 <%@ page import="crud.User" %>
 <%@ page import="crud.UserDAO" %>
+<%@ page import="java.util.List" %>
+<%
+    int userId = Integer.parseInt(request.getParameter("id"));
+    pageUser user = new pageUserDAO().getUserById(userId);
+    List<User> aa = new UserDAO().getAllUsers();
+    for(User a: aa){
+    	if(a.getLink().equals(request.getParameter("id"))){
+    		response.sendRedirect("../PageCreate/home.jsp");
+    	}
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,18 +41,18 @@
 <body>
 
 <div class="container">
-<form action="${pageContext.request.contextPath}/insertUser" method="post"  class="border p-4 rounded bg-light">
+<form action="${pageContext.request.contextPath}/insert" method="post"class="border p-4 rounded bg-light">
 
   <h2 class="text-center mb-4">Create Your Blog</h2><br>
 
   <div class="mb-3">
     <label for="name" class="form-label">University Name</label>
-    <input type="text" class="form-control" id="name" name="uniname" placeholder="Enter Your Name" required>
+    <input type="text" class="form-control" id="name" name="uniname"  value="<%= user.getUniname() %>"   placeholder="Enter Your Name" required>
   </div>
 
   <div class="mb-3">
     <label for="location" class="form-label">Location</label>
-    <input type="text" class="form-control" id="location" name="location" placeholder="Enter Your location" required>
+    <input type="text" class="form-control" id="location" name="location"  value="<%=user.getLocation() %>" placeholder="Enter Your location" required>
   </div>
   
   <div class="mb-3">
@@ -48,7 +62,7 @@
   
     <div class="mb-3">
     <label for="link" class="form-label">Link</label>
-    <input type="text" class="form-control" id="link" name="link" placeholder="Enter Your link" required>
+    <input type="text" class="form-control" id="link" name="link"  value="<%= userId %>" placeholder="Enter Your link" required>
   </div>
   
   <div class="mb-3">

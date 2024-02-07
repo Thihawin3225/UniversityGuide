@@ -2,10 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
 <%@ page import="crud.User" %>
-<%@ page import="crud.UserDAO" %>
+<%@ page import="pagecreate.pageUserDAO" %>
+<%@ page import="pagecreate.pageUser" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
+List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 
 %>
 
@@ -80,11 +81,11 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
             </a>
             <ul class="nav nav-treeview">
             <%
-				List<User> userList = new UserDAO().getUserByName(a);
+				List<pageUser> userList = new pageUserDAO().getUserByName(a);
 		%>
-            <% for(User user : userList) {%>
+            <% for(pageUser user : userList) {%>
               <li class="nav-item">
-                <a href="<%= user.getLink()%>" class="nav-link">
+                <a href="example.jsp?id=<%= user.getId()%>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p><%= user.getLocation() %></p>
                 </a>
@@ -102,16 +103,11 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
               </p>
             </a>
             <ul class="nav nav-treeview">
+
               <li class="nav-item">
-                <a href="simple.jsp" class="nav-link">
+                <a href="three.jsp" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>UniName/Location</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="location.jsp" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mark</p>
+                  <p>search</p>
                 </a>
               </li>
             </ul>
@@ -131,7 +127,7 @@ List<String> distinctUniNames = new UserDAO().getDistinctUniNames();
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
+      <b><a href="../logainAndregister/login.jsp" class="btn btn-primary">Go Admin</a></b>
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>

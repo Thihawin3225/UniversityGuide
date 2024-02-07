@@ -1,0 +1,71 @@
+package pagecreate;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class pageUserDAO {
+
+    // Your database connection details
+    private static final String JDBC_URL = "jdbc:mysql://universityguide";
+    private static final String JDBC_USER = "root";
+    private static final String JDBC_PASSWORD = "";
+
+    // SQL queries for CRUD operations
+    private static final String INSERT_USER_QUERY = "INSERT INTO your_table_name (uniname, location, description, logo, image) VALUES (?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL_USERS_QUERY = "SELECT * FROM your_table_name";
+    
+    // Other CRUD queries (update, delete) can be added as needed
+
+    public void insertUser(pageUser user) {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_QUERY)) {
+
+            preparedStatement.setString(1, user.getUniname());
+            preparedStatement.setString(2, user.getLocation());
+            preparedStatement.setString(3, user.getDesc());
+            preparedStatement.setString(4, user.getLogo());
+            preparedStatement.setString(5, user.getImage());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log, throw a custom exception, etc.)
+        }
+    }
+
+    public List<pageUser> getAllUsers() {
+        List<pageUser> userList = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS_QUERY);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String uniname = resultSet.getString("uniname");
+                String location = resultSet.getString("location");
+                String desc = resultSet.getString("description");
+                String logo = resultSet.getString("logo");
+                String image = resultSet.getString("image");
+
+                pageUser user = new pageUser(id, uniname, location, desc, logo, image);
+                userList.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log, throw a custom exception, etc.)
+        }
+
+        return userList;
+    }
+
+    // Other methods for update, delete, and additional queries can be added as needed
+}
+

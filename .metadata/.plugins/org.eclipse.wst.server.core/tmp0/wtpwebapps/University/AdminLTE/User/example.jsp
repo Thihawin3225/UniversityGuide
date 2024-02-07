@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="pagecreate.pageUser" %>
+<%@ page import="pagecreate.pageUserDAO" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+int userId = Integer.parseInt(request.getParameter("id"));
+pageUser user = new pageUserDAO().getUserById(userId);
+
+%>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,14 +78,15 @@
 </head>
 
 <body>
-
     <header>
-        <h1>University Name</h1>
+        <h1><%= user.getUniname() %> &nbsp; (<%= user.getLocation() %>)</h1>
         <p>Empowering Minds, Transforming Lives</p>
     </header>
 
     <nav>
-        <img src="university-logo.png" alt="University Logo">
+        <img src="<%= user.getImage() %>" alt="University Logo">
+
+
         <div>
             <a href="#">Home</a>
             <a href="#">Admissions</a>
@@ -87,17 +99,14 @@
 
     <section>
         <h2>Welcome to Our University!</h2>
-        <img src="placeholder-image.jpg" alt="University Image">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel sapien sit amet lacus vehicula
-            fringilla.
-            Sed fermentum justo a felis ornare, a faucibus magna accumsan.</p>
-        <p>Explore our academic programs, learn about our dedicated faculty, and discover the vibrant campus life.</p>
+        <img src="C:/Users/Acer/Desktop/UniversityGuide/University/img/<%= user.getImage() %>" alt="University Logo">
+
+        <p><%= user.getDesc() %></p>
     </section>
 
     <footer>
         <p>&copy; 2024 University Name. All rights reserved.</p>
     </footer>
-
 </body>
 
 </html>

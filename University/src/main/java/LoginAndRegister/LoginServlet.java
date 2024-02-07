@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         PrintWriter out = response.getWriter();
-        HttpSession sessionn = request.getSession();
+        HttpSession session = request.getSession();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/universityguide", "root", "");
@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                    	sessionn.setAttribute("name", email);
+                    	session.setAttribute("name", email);
                     	response.sendRedirect("AdminLTE/loginAndregister/home.jsp");
                     } else {
                         response.sendRedirect("login.jsp");

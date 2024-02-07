@@ -5,8 +5,16 @@
 <%@ page import="crud.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
 
-<%
 
+<%
+	HttpSession aa = request.getSession();
+	if(aa.getAttribute("name") == null){
+		response.sendRedirect("login.jsp");
+	} 
+%>
+
+
+<%
     String searchQuery = request.getParameter("search");
     List<User> userList;
     if (searchQuery != null && !searchQuery.isEmpty()) {

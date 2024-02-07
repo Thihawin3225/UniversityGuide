@@ -202,7 +202,7 @@ public class UserDAO {
         return userList;
     }
     
-    public List<User> searchTwo(String uninameQuery, String locationQuery) {
+    public List<User> searchUniNameAndLocation(String uninameQuery, String locationQuery) {
         List<User> userList = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
@@ -211,6 +211,66 @@ public class UserDAO {
 
             preparedStatement.setString(1, "%" + uninameQuery + "%");
             preparedStatement.setString(2, "%" + locationQuery + "%");
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String uniname = resultSet.getString("uniname");
+                    String location = resultSet.getString("location");
+                    String mark = resultSet.getString("mark");
+                    String link = resultSet.getString("link");
+
+                    User user = new User(id, uniname, location, mark, link);
+                    userList.add(user);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+    
+    public List<User> searchLocationAndMark(String locationQuery, String uniMarkQuery) {
+        List<User> userList = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "SELECT * FROM user WHERE location LIKE ? AND mark < ?")) {
+
+            preparedStatement.setString(1, "%" + locationQuery + "%");
+            preparedStatement.setString(2, uniMarkQuery);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String uniname = resultSet.getString("uniname");
+                    String location = resultSet.getString("location");
+                    String mark = resultSet.getString("mark");
+                    String link = resultSet.getString("link");
+
+                    User user = new User(id, uniname, location, mark, link);
+                    userList.add(user);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+    
+    public List<User> searchUniNameAndMark(String uninameQuery, String uniMark) {
+        List<User> userList = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(
+                     "SELECT * FROM user WHERE uniname LIKE ? AND mark < ?")) {
+
+            preparedStatement.setString(1, "%" + uninameQuery + "%");
+            preparedStatement.setString(2,uniMark);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {

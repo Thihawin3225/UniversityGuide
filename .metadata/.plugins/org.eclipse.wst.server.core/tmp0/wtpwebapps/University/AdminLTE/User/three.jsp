@@ -10,18 +10,25 @@
 <%
 List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 
-String unisearchQuery = request.getParameter("unisearch");
-String lsearchQuery = request.getParameter("lsearch");
-String msearchQuery = request.getParameter("msearch");
+String unisearchQuery = request.getParameter("unisearch").trim();
+String lsearchQuery = request.getParameter("lsearch").trim();
+String msearchQuery = request.getParameter("msearch").trim();
 List<User> userList;
 
-if (msearchQuery != null && !msearchQuery.isEmpty()) {
-    userList = new UserDAO().searchTwo(unisearchQuery, lsearchQuery);
-} else if (unisearchQuery != null && !unisearchQuery.isEmpty()) {
-    userList = new UserDAO().searchUni(unisearchQuery);
-} else if (lsearchQuery != null && !lsearchQuery.isEmpty()) {
-    userList = new UserDAO().searchLocation(lsearchQuery);
-} else {
+if (msearchQuery != null && msearchQuery.isEmpty()) {
+    userList = new UserDAO().searchUniNameAndLocation(unisearchQuery, lsearchQuery);// not include mark
+}  else if(unisearchQuery != null && unisearchQuery.isEmpty()){
+	userList =  new UserDAO().searchLocationAndMark(lsearchQuery, msearchQuery);// not include  uniname
+}else if(
+		msearchQuery != null && !msearchQuery.isEmpty() &&
+		lsearchQuery != null && !lsearchQuery.isEmpty() &&
+		unisearchQuery != null && !unisearchQuery.isEmpty() 
+		){
+	userList = new UserDAO().searchAnd(unisearchQuery, lsearchQuery, msearchQuery);// include all
+}else if(lsearchQuery != null && lsearchQuery.isEmpty()){
+	userList = new UserDAO().searchUniNameAndMark(unisearchQuery, msearchQuery);
+}
+else {
     userList = new UserDAO().getAllUsers();
 }
 %>
@@ -147,7 +154,7 @@ if (msearchQuery != null && !msearchQuery.isEmpty()) {
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h2 class="text-center display-4">Location or UniName Search</h2>
+            <h2 class="text-center display-4">UniName Search</h2>
             <form action="" method="get">
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -180,7 +187,7 @@ if (msearchQuery != null && !msearchQuery.isEmpty()) {
                                 </div>
                             </div>
                             <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" name="msearch" placeholder="Enter UniName or Location" value="">
+                                <input type="search" class="form-control form-control-lg" name="msearch" placeholder="Mark" value="">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -205,7 +212,6 @@ if (msearchQuery != null && !msearchQuery.isEmpty()) {
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th style="width: 10px">id</th>
                     <th>University Name</th>
                     <th>Location</th>
                     <th>Mark</th>
@@ -216,7 +222,6 @@ if (msearchQuery != null && !msearchQuery.isEmpty()) {
                   
                    <% for (User user : userList) { %>
             <tr>
-                <td><%= user.getId() %></td>
                 <td><%= user.getUniname() %></td>
                 <td><%= user.getLocation() %></td>
                 <td><%= user.getMark() %>

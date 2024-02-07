@@ -185,7 +185,7 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      <a href="logout.jsp" type="button" class="btn btn-danger">
+      <a href="../loginAndregister/logout.jsp" type="button" class="btn btn-danger">
         Logout
       </a>
     </div>

@@ -9,6 +9,12 @@
 List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 
 %>
+<%
+	HttpSession aa = request.getSession();
+	if(aa.getAttribute("name") == null){
+		response.sendRedirect("login.jsp");
+	} 
+%>
 
 
 <!DOCTYPE html>

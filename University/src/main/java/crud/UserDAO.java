@@ -232,6 +232,18 @@ public class UserDAO {
         return userList;
     }
     
+    public void getDeleteAll() {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM user")) {
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log, throw a custom exception, etc.)
+        }
+    }
+    
     public List<User> searchLocationAndMark(String locationQuery, String uniMarkQuery) {
         List<User> userList = new ArrayList<>();
 

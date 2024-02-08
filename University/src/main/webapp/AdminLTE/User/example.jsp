@@ -84,7 +84,7 @@ pageUser user = new pageUserDAO().getUserById(userId);
     </header>
 
     <nav>
-        <img src="<%= user.getImage() %>" alt="University Logo">
+        <img src="../../img/<%= user.getImage() %>" alt="University Logo">
 
 
         <div>
@@ -99,7 +99,7 @@ pageUser user = new pageUserDAO().getUserById(userId);
 
     <section>
         <h2>Welcome to Our University!</h2>
-        <img src="C:/Users/Acer/Desktop/UniversityGuide/University/img/<%= user.getImage() %>" alt="University Logo">
+        <img src="../../img/<%= user.getImage() %>" alt="University Logo">
 
         <p><%= user.getDesc() %></p>
     </section>

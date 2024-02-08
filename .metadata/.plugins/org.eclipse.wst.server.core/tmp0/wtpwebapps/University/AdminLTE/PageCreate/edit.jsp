@@ -65,7 +65,7 @@
     <!-- Other form fields... -->
 
     <div class="mb-3">
-        <button type="submit" class="btn btn-primary btn-block">Add</button>
+        <button type="submit" class="btn btn-primary btn-block">Update</button>
     </div>
 </form>
 

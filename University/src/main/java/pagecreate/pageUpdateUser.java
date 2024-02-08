@@ -36,19 +36,20 @@ public class pageUpdateUser extends HttpServlet {
 	            Part logofile = request.getPart("logo");
 	            imageFileName = file.getSubmittedFileName();
 	            logoFileName = logofile.getSubmittedFileName();
-	            String uploadDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" +
-	                    File.separator + "Desktop" + File.separator + "UniversityGuide" +
-	                    File.separator + "University" + File.separator + "img" + File.separator + imageFileName;
+	            String uploadDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" + File.separator + 
+	            		"Desktop" + File.separator + "UniversityGuide" + File.separator + "University" + File.separator + 
+	            		"src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img"+ File.separator + imageFileName;
 
-	            String uploadlogoDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" +
-	                    File.separator + "Desktop" + File.separator + "UniversityGuide" +
-	                    File.separator + "University" + File.separator + "img" + File.separator + logoFileName;
+
+	            String uploadlogoDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" + File.separator + 
+	            		"Desktop" + File.separator + "UniversityGuide" + File.separator + "University" + File.separator + 
+	            		"src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img"+ File.separator + logoFileName;
 
 
 	            // Check if the file already exists, and if yes, consider renaming or handling accordingly
 	            File existingFile = new File(uploadDirectory);
 	            File existinglogoFile = new File(uploadlogoDirectory);
-	            if (existingFile.exists()) {
+	            if (existingFile.exists() || existinglogoFile.exists()) {
 	                // Handle the case where the file already exists
 	            }
 

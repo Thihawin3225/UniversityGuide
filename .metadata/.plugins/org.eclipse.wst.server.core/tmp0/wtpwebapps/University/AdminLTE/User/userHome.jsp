@@ -133,7 +133,7 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b><a href="../logainAndregister/login.jsp" class="btn btn-primary">Go Admin</a></b>
+      <b><a href="../loginAndregister/login.jsp" class="btn btn-primary">Go Admin</a></b>
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>

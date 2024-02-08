@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import crud.User;
+
 
 public class pageUserDAO {
 
@@ -151,6 +151,19 @@ public class pageUserDAO {
             // Handle the exception appropriately (log, throw a custom exception, etc.)
         }
     }
+    
+    
+    public void getDeleteAll() {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM page")) {
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log, throw a custom exception, etc.)
+        }
+    }
     public List<pageUser> getUserByName(String name) {
         List<pageUser> userList = new ArrayList<>();
 
@@ -198,6 +211,9 @@ public class pageUserDAO {
 
         return distinctUniNames;
     }
+    
+
+    
     
     public pageUser getUserById(int userId) {
         pageUser user = null;

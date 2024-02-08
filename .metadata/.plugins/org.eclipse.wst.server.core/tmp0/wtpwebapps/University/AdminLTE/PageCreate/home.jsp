@@ -9,16 +9,31 @@
 
 <%
     String searchQuery = request.getParameter("search");
+	
     List<pageUser> userList;
     if (searchQuery != null && !searchQuery.isEmpty()) {
     	userList = new pageUserDAO().searchUsers(searchQuery);
     } else {
         userList = new pageUserDAO().getAllUsers();
     }
+
+
 %>
 <%
-	List<User> check = new UserDAO().getAllUsers();
+	
+    List<User> check = new UserDAO().getAllUsers();
+    
+    // Initialize linkData array with the size of check list
+    String[] linkData = new String[check.size()];
+    
+    // Loop through each user and add their link to linkData array
+    int i = 0;
+    for (User a : check) {
+        linkData[i] = a.getLink();
+        i++;
+    }
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -88,14 +103,35 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Simple Link
+                Pages
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/AdminLTE/loginAndregister/home.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>University</p>
+                </a>
+              </li>
+
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+
+            </ul>
           </li>
-        </ul>
+                   
+            </ul>
       </nav>
+      <!-- /.sidebar-menu -->
     </div>
   </aside>
   <div class="content-wrapper">
@@ -113,12 +149,14 @@
            <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/add.jsp" class="btn btn-warning">
               Create Page 
           </a>
-           <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="btn btn-warning">
-              Go To User Page 
-          </a>
-          <a href="${pageContext.request.contextPath}/AdminLTE/loginAndregister/home.jsp" class="btn btn-warning">
-              Go To User Page 
-          </a>
+
+
+          <div class="float-right d-none d-sm-inline">
+      <a href="${pageContext.request.contextPath}/DeleteAll" type="button" class="btn btn-danger">
+        DeleteAll
+      </a>
+    </div>
+          
       </div>
     </div>
     <div class="content">
@@ -147,7 +185,12 @@
                 </thead>
                 <tbody>
                   
-                   <% for (pageUser user : userList) { %>
+                   <% 
+                   int j=0;
+                   
+                   for (pageUser user : userList) {
+                	  
+                	   %>
             <tr>
                 <td><%= user.getId() %></td>
                 <td><%= user.getUniname() %></td>
@@ -155,13 +198,36 @@
                 <td><%= user.getDesc() %></td>
                 <td><%= user.getLogo() %></td>
                 <td><%= user.getImage() %></td>
-              <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
-                <td><a href="edit.jsp?id=<%= user.getId() %>">Edit</a>
+              <%
+    // Ensure j is properly initialized and within bounds
+    
+    // Iterate through linkData
+    if(j < linkData.length) {
+            if (Integer.toString(user.getId()).equals(linkData[j])) {
+%>
+                <td><a href="">Finished</a></td>
+<%
+            
+        } else {
+%>
+            <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
+<%
+        
+        
+    }
+    }else{
+             
+%>
+<td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
+<%} %>
+              
+               
+                <td><a href="edit.jsp?id=<%= user.getId()%>">Edit</a>
                 <a href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>
                 
 	</td>
             </tr>
-        <% } %>
+        <% j++;} %>
                 </tbody>
               </table>
               <br>

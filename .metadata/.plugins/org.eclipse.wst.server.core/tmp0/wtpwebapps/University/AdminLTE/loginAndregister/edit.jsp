@@ -78,9 +78,6 @@ List<User> aa = new UserDAO().getAllUsers();
     <button type="submit" class="btn btn-primary btn-block">Update</button>
   </div>
 
-  <div class="mb-3 text-center">
-    <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
-  </div>
 </form>
 
 

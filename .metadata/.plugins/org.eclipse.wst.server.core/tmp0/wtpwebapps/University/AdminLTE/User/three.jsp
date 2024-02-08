@@ -10,9 +10,9 @@
 <%
 List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 
-String unisearchQuery = request.getParameter("unisearch").trim();
-String lsearchQuery = request.getParameter("lsearch").trim();
-String msearchQuery = request.getParameter("msearch").trim();
+String unisearchQuery = request.getParameter("unisearch");
+String lsearchQuery = request.getParameter("lsearch");
+String msearchQuery = request.getParameter("msearch");
 List<User> userList;
 
 if (msearchQuery != null && msearchQuery.isEmpty()) {

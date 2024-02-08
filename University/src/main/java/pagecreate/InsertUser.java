@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,8 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import pagecreate.pageUser;
-import pagecreate.pageUserDAO;
+
 
 /**
  * Servlet implementation class InsertUser
@@ -39,13 +39,14 @@ public class InsertUser extends HttpServlet {
             Part logofile = request.getPart("logo");
             imageFileName = file.getSubmittedFileName();
             logoFileName = logofile.getSubmittedFileName();
-            String uploadDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" +
-                    File.separator + "Desktop" + File.separator + "UniversityGuide" +
-                    File.separator + "University" + File.separator + "img" + File.separator + imageFileName;
+            String uploadDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" + File.separator + 
+            		"Desktop" + File.separator + "UniversityGuide" + File.separator + "University" + File.separator + 
+            		"src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img"+ File.separator + imageFileName;
 
-            String uploadlogoDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" +
-                    File.separator + "Desktop" + File.separator + "UniversityGuide" +
-                    File.separator + "University" + File.separator + "img" + File.separator + logoFileName;
+
+            String uploadlogoDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" + File.separator + 
+            		"Desktop" + File.separator + "UniversityGuide" + File.separator + "University" + File.separator + 
+            		"src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img"+ File.separator + logoFileName;
 
 
             // Check if the file already exists, and if yes, consider renaming or handling accordingly
@@ -70,6 +71,7 @@ public class InsertUser extends HttpServlet {
                 is.read(data);
                 foslogo.write(data);
             }
+            
         } catch (IOException | ServletException e) {
             e.printStackTrace();
             // Handle the exception (e.g., forward to an error page)
@@ -86,9 +88,22 @@ public class InsertUser extends HttpServlet {
         // Insert the user into the database
     
      pageUserDAO userDAO = new pageUserDAO();
-      userDAO.insertUser(user);
-      
-        response.sendRedirect("AdminLTE/PageCreate/home.jsp");
+     List<pageUser> data = userDAO.getAllUsers();
+     boolean bol = false;
+     for(pageUser a: data) {
+    	 if(a.getLocation().equalsIgnoreCase(location) && a.getUniname().equalsIgnoreCase(uniname)) {
+    		
+    		 bol = true;
+    	 }
+     }
+     if(bol) {
+    	 response.sendRedirect("AdminLTE/PageCreate/home.jsp");
+     }else {
+    	 userDAO.insertUser(user);
+    	    response.sendRedirect("AdminLTE/PageCreate/home.jsp");
+     }
+     
+
     }
 }
 

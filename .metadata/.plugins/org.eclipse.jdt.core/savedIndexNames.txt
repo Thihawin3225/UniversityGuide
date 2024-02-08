@@ -6,7 +6,6 @@ INDEX VERSION 1.134+C:\Users\Acer\Desktop\UniversityGuide\.metadata\.plugins\org
 4064065788.index
 2311241428.index
 583828942.index
-1616833366.index
 954141476.index
 766051159.index
 1116342640.index

@@ -104,19 +104,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
         </div>
       </div>
-      <nav class="mt-2">
+            <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Simple Link
+                Pages
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/home.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>pageCreate</p>
+                </a>
+              </li>
+
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+
+            </ul>
           </li>
-        </ul>
+                   
+            </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -134,14 +152,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <br>
         </div>
-      </div>
-      <div>
-           <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="btn btn-warning">
-              Go To User Page 
-          </a>
-          <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/home.jsp" class="btn btn-warning">
-              Go to Page Create 
-          </a>
       </div>
     </div>
     <!-- /.content-header -->

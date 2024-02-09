@@ -31,7 +31,7 @@
 <body>
 
 <div class="container">
-	<form action="${pageContext.request.contextPath}/pageupdate" method="post" enctype="multipart/form-data" class="border p-4 rounded bg-light">
+	<form action="${pageContext.request.contextPath}/pageupdate" method="post" accept-charset="UTF-8" enctype="multipart/form-data" class="border p-4 rounded bg-light">
     <h2 class="text-center mb-4">Create Your Blog</h2><br>
     <input type="hidden" name="id" value="<%= user.getId() %>">
     <!-- Hidden input field for image path -->

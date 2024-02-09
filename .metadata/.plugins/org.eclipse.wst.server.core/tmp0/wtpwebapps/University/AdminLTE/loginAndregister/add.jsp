@@ -41,7 +41,7 @@
 <body>
 
 <div class="container">
-<form action="${pageContext.request.contextPath}/insert" method="post"class="border p-4 rounded bg-light">
+<form action="${pageContext.request.contextPath}/insert" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
 
   <h2 class="text-center mb-4">Create Your Blog</h2><br>
 

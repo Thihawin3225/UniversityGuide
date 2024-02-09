@@ -31,6 +31,7 @@ public class InsertUser extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
         String imageFileName = "";
         String logoFileName = "";
         PrintWriter out = response.getWriter();
@@ -52,7 +53,7 @@ public class InsertUser extends HttpServlet {
             // Check if the file already exists, and if yes, consider renaming or handling accordingly
             File existingFile = new File(uploadDirectory);
             File existinglogoFile = new File(uploadlogoDirectory);
-            if (existingFile.exists()) {
+            if (existingFile.exists() || existinglogoFile.exists()) {
                 // Handle the case where the file already exists
             }
 

@@ -15,6 +15,7 @@ public class InsertUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve user data from the form
+    	request.setCharacterEncoding("UTF-8");
     	PrintWriter out = response.getWriter();
         String uniname = request.getParameter("uniname");
         String location = request.getParameter("location");

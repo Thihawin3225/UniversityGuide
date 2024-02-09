@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html;  charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <%@ page import="java.util.List" %>
 <%@ page import="pagecreate.pageUser" %>
 <%@ page import="pagecreate.pageUserDAO" %>
@@ -189,13 +190,13 @@
                    int j=0;
                    
                    for (pageUser user : userList) {
-                	  
+                	  String desc = user.getDesc().substring(0,50);
                 	   %>
             <tr>
                 <td><%= user.getId() %></td>
                 <td><%= user.getUniname() %></td>
                 <td><%= user.getLocation() %></td>
-                <td><%= user.getDesc() %></td>
+                <td><%= desc %>...</td>
                 <td><%= user.getLogo() %></td>
                 <td><%= user.getImage() %></td>
               <%

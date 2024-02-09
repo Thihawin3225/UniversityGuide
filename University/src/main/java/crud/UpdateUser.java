@@ -16,6 +16,7 @@ public class UpdateUser extends HttpServlet {
             throws ServletException, IOException {
         // Retrieve user data from the form
     	 PrintWriter out = response.getWriter();
+    	 request.setCharacterEncoding("UTF-8");
     	
         int id = Integer.parseInt(request.getParameter("id"));
         String uniname = request.getParameter("uniname");

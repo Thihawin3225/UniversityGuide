@@ -1,12 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="crud.User" %>
 <%@ page import="crud.UserDAO" %>
-
+<%@ page import="pagecreate.pageUser" %>
+<%@ page import="pagecreate.pageUserDAO" %>
+<%@ page import="java.util.List" %>
 <%
-    int userId = Integer.parseInt(request.getParameter("id"));
-    User user = new UserDAO().getUserById(userId);
+int userId = Integer.parseInt(request.getParameter("id"));
+pageUser pageuser=pageuser=new pageUserDAO().getUserById(userId);;
+List<User> aa = new UserDAO().getAllUsers();
+	for(User a: aa){
+		if(userId == Integer.parseInt(a.getLink())){
+			userId = a.getId();
+		}
+	}
+	User user = new UserDAO().getUserById(userId);
 %>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,18 +42,26 @@
 <body>
 
 <div class="container">
-<form action="${pageContext.request.contextPath}/UpdateUser" method="post" class="border p-4 rounded bg-light">
-
+<form action="${pageContext.request.contextPath}/update" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
   <h2 class="text-center mb-4">Create Your Blog</h2><br>
-	<input type="hidden" name="id" value="<%= user.getId() %>">
+	<input type="hidden" name="id" value="<%= user.getId()%>"/>
   <div class="mb-3">
     <label for="name" class="form-label">University Name</label>
-   <input type="text" class="form-control" id="name" name="uniname" placeholder="Enter Your Name" value="<%= user.getUniname() %>" required>
+  <% if(pageuser != null && !pageuser.getUniname().isEmpty()) { %>
+                    <input type="text" class="form-control" id="name"  name="uniname" placeholder="Enter Your Name" value="<%= pageuser.getUniname() %>" required>
+                <% } else { %>
+                    <input type="text" class="form-control" id="name"  name="uniname" placeholder="Enter Your Name" value="<%= user.getUniname() %>" required>
+                <% } %>
   </div>
 
   <div class="mb-3">
     <label for="location" class="form-label">Location</label>
-    <input type="text" class="form-control" id="location" name="location" value="<%= user.getLocation() %>" placeholder="Enter Your location" required>
+    <% if(pageuser != null && !pageuser.getUniname().isEmpty()) { %>
+                    <input type="text" class="form-control" id="location" name="location"  value="<%= pageuser.getLocation() %>" placeholder="Enter Your location" required>
+                <% } else { %>
+                    <input type="text" class="form-control" id="location" name="location"  value="<%= user.getLocation() %>" placeholder="Enter Your location" required>
+                <% } %>
+    
   </div>
   
   <div class="mb-3">
@@ -55,16 +71,13 @@
   
     <div class="mb-3">
     <label for="link" class="form-label">Link</label>
-    <input type="text" class="form-control" id="link" value="<%= user.getLink() %>" name="link" placeholder="Enter Your link" required>
+    <input type="text" class="form-control" id="link"  value="<%= user.getLink() %>" name="link" placeholder="Enter Your link" required>
   </div>
   
   <div class="mb-3">
     <button type="submit" class="btn btn-primary btn-block">Update</button>
   </div>
 
-  <div class="mb-3 text-center">
-    <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
-  </div>
 </form>
 
 
@@ -74,3 +87,5 @@
 
 </body>
 </html>
+
+

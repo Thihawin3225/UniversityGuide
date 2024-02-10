@@ -20,6 +20,7 @@ public class pageDeleteUser extends HttpServlet {
             throws ServletException, IOException {
         // Retrieve user ID from the request parameter
         int userId = Integer.parseInt(request.getParameter("id"));
+
         // Delete the user from the database
         pageUserDAO userDAO = new pageUserDAO();
         userDAO.deleteUser(userId);

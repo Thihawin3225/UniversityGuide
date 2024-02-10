@@ -6,7 +6,7 @@
 <%@ page import="java.util.List" %>
 <%
 int userId = Integer.parseInt(request.getParameter("id"));
-pageUser pageuser=pageuser=new pageUserDAO().getUserById(userId);;
+pageUser pageuser=new pageUserDAO().getUserById(userId);;
 List<User> aa = new UserDAO().getAllUsers();
 	for(User a: aa){
 		if(userId == Integer.parseInt(a.getLink())){

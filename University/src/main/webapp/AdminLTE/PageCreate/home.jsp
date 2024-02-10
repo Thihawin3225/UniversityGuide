@@ -190,7 +190,7 @@
                    int j=0;
                    
                    for (pageUser user : userList) {
-                	  String desc = user.getDesc().substring(0,50);
+                	  String desc = user.getDesc();
                 	   %>
             <tr>
                 <td><%= user.getId() %></td>

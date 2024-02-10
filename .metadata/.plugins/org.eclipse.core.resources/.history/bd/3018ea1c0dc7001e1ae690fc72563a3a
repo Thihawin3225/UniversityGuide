@@ -1,34 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html;  charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <%@ page import="java.util.List" %>
+<%@ page import="pagecreate.pageUser" %>
+<%@ page import="pagecreate.pageUserDAO" %>
 <%@ page import="crud.User" %>
 <%@ page import="crud.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%
-    // Retrieve the search query from the request parameter
     String searchQuery = request.getParameter("search");
-
-    // Declare userList outside the if block
-    List<User> userList;
+	
+    List<pageUser> userList;
     if (searchQuery != null && !searchQuery.isEmpty()) {
-        userList = new UserDAO().searchUsers(searchQuery);
+    	userList = new pageUserDAO().searchUsers(searchQuery);
     } else {
-        userList = new UserDAO().getAllUsers();
+        userList = new pageUserDAO().getAllUsers();
+    }
+
+
+%>
+<%
+	
+    List<User> check = new UserDAO().getAllUsers();
+    
+    // Initialize linkData array with the size of check list
+    String[] linkData = new String[check.size()];
+    
+    // Loop through each user and add their link to linkData array
+    int i = 0;
+    for (User a : check) {
+        linkData[i] = a.getLink();
+        i++;
     }
 %>
+
+
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog/App</title>
-
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -37,8 +50,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
-  <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -52,7 +63,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <i class="fas fa-search"></i>
         </a>
         <div class="navbar-search-block">
-          <form class="form-inline" method="post" action="index.php">
+          <form class="form-inline" method="get" action="">
+
             <div class="input-group input-group-sm">
               <input class="form-control form-control-navbar" name= "search" type="search" placeholder="Search" aria-label="Search">
               <div class="input-group-append">
@@ -65,19 +77,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div>
             </div>
           </form>
+          
         </div>
       </li>
     </ul>
-
-
-    <!-- Right navbar links -->
-    
   </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">
@@ -85,7 +90,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </span>
     </a>
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -98,26 +102,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Simple Link
+                Pages
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/AdminLTE/loginAndregister/home.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>University</p>
+                </a>
+              </li>
+
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/AdminLTE/User/userHome.jsp" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+
+            </ul>
           </li>
-        </ul>
+                   
+            </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -128,14 +146,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
       <div>
-          <a href="add.jsp" class="btn btn-warning">
-              Create Blog
+      	
+           <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/add.jsp" class="btn btn-warning">
+              Create Page 
           </a>
+
+
+          <div class="float-right d-none d-sm-inline">
+      <a href="${pageContext.request.contextPath}/DeleteAll" type="button" class="btn btn-danger">
+        DeleteAll
+      </a>
+    </div>
+          
       </div>
     </div>
-    <!-- /.content-header -->
-  
-    <!-- Main content -->
     <div class="content">
       <div class="row">
         <div class="col-md-12">
@@ -153,39 +177,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <th style="width: 10px">id</th>
                     <th>University Name</th>
                     <th>Location</th>
-                    <th>Mark</th>
-                    <th>Link</th>
+                    <th>Description</th>
+                    <th>logo</th>
+                    <th>image</th>
+                    <th>Add Mark</th>
                     <th style="width: 40px">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   
-                   <% for (User user : userList) { %>
+                   <% 
+                   int j=0;
+                   
+                   for (pageUser user : userList) {
+                	  String desc = user.getDesc().substring(0,50);
+                	   %>
             <tr>
                 <td><%= user.getId() %></td>
                 <td><%= user.getUniname() %></td>
+                <td><%= user.getLocation() %></td>
+                <td><%= desc %>...</td>
+                <td><%= user.getLogo() %></td>
+                <td><%= user.getImage() %></td>
+              <%
+    // Ensure j is properly initialized and within bounds
+    
+    // Iterate through linkData
+    if(j < linkData.length) {
+            if (Integer.toString(user.getId()).equals(linkData[j])) {
+%>
+                <td><a href="">Finished</a></td>
+<%
+            
+        } else {
+%>
+            <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
+<%
+        
+        
+    }
+    }else{
+             
+%>
+<td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
+<%} %>
               
-                <td><%= user.getMark() %>
-                <td><a href="editUser.jsp?id=<%= user.getId() %>">Edit</a>
-                <a href="deleteUser?id=<%= user.getId() %>">Delete</a></td>
+               
+                <td><a href="edit.jsp?id=<%= user.getId()%>">Edit</a>
+                <a href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>
+                
+	</td>
             </tr>
-        <% } %>
+        <% j++;} %>
                 </tbody>
               </table>
               <br>
-           
             </div>
-            <!-- /.card-body -->
           </div>
         </div>
       </div>
 
     </div>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
     <div class="p-3">
@@ -199,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      <a href="logout.jsp" type="button" class="btn btn-danger">
+      <a href="../loginAndregister/logout.jsp" type="button" class="btn btn-danger">
         Logout
       </a>
     </div>
@@ -208,11 +261,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
   </footer>
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
 <script src="..//plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

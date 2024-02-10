@@ -118,7 +118,7 @@ else {
             </ul>
           </li>
           <%} %>
-                   <li class="nav-item">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>
@@ -127,16 +127,11 @@ else {
               </p>
             </a>
             <ul class="nav nav-treeview">
+
               <li class="nav-item">
-                <a href="simple.jsp" class="nav-link">
+                <a href="three.jsp" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>UniName</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="location.jsp" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Mark</p>
+                  <p>search</p>
                 </a>
               </li>
             </ul>

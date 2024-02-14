@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/login")
+@WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
                     	session.setAttribute("name", email);
                     	response.sendRedirect("AdminLTE/loginAndregister/home.jsp");
                     } else {
-                        response.sendRedirect("login.jsp");
+                        out.print("err");
                     }
                 }
             }

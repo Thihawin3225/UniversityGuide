@@ -85,16 +85,6 @@ pageUser user = new pageUserDAO().getUserById(userId);
 
     <nav>
         <img src="../../img/<%= user.getImage() %>" alt="University Logo">
-
-
-        <div>
-            <a href="#">Home</a>
-            <a href="#">Admissions</a>
-            <a href="#">Departments</a>
-            <a href="#">Courses</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-        </div>
     </nav>
 
     <section>
@@ -105,7 +95,7 @@ pageUser user = new pageUserDAO().getUserById(userId);
     </section>
 
     <footer>
-        <p>&copy; 2024 University Name. All rights reserved.</p>
+        <p>&copy; 2024<%= user.getUniname() %> All rights reserved.</p>
     </footer>
 </body>
 

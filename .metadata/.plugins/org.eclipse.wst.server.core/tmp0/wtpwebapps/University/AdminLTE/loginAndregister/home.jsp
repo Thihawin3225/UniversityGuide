@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog/App</title>
+  <title>University Guide</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -89,7 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index3.html" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">
-        Blog
+        University Guide
       </span>
     </a>
     <div class="sidebar">
@@ -100,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <div class="info">
           <a href="#" class="d-block">
-            Name
+            Admin
           </a>
         </div>
       </div>
@@ -158,11 +158,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
     <!-- Main content -->
     <div class="content">
+    <%
+    if (userList.isEmpty()) {
+         %>
+         <div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="alert alert-info text-center" role="alert">
+      Empty
+      <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/add.jsp" class="nav-link">Create</a>
+    </div>
+  </div>
+</div>
+         
+     <%}else{ %>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Page Create Blog</h3>
+              <h3 class="card-title">Mark Create Blog</h3>
             </div>
 
 
@@ -201,7 +214,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.card-body -->
           </div>
         </div>
-      </div>
+        </div>
+        <%} %>
+      
 
     </div>
     <!-- /.content -->

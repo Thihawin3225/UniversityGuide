@@ -30,6 +30,7 @@ public class pageUserDAO {
     private static final String INSERT_USER_QUERY = "INSERT INTO page (uniname, location, description, logo, image) VALUES (?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_USERS_QUERY = "SELECT * FROM page";
     private static final String UPDATE_USER_QUERY = "UPDATE page SET uniname=?, location=?, description=?, logo=?, image=? WHERE id=?";
+    private static final String UPDATE_USER_QUERY_NOT = "UPDATE page SET uniname=?, location=?, description=? WHERE id=?";
     private static final String DELETE_USER_QUERY = "DELETE FROM page WHERE id=?";
 
     
@@ -130,6 +131,22 @@ public class pageUserDAO {
             preparedStatement.setString(5, user.getImage());
             preparedStatement.setInt(6, user.getId());  // Assuming 'id' is the primary key
 
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log, throw a custom exception, etc.)
+        }
+    }
+    
+    public void notImage(pageUser user) {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_QUERY_NOT)) {
+
+            preparedStatement.setString(1, user.getUniname());
+            preparedStatement.setString(2, user.getLocation());
+            preparedStatement.setString(3, user.getDesc());
+            preparedStatement.setInt(4, user.getId());  // Assuming 'id' is the primary key
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

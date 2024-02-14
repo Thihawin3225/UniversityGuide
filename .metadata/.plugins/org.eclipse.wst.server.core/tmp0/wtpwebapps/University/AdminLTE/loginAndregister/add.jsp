@@ -41,18 +41,18 @@
 <body>
 
 <div class="container">
-<form action="${pageContext.request.contextPath}/insert" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
+<form action="${pageContext.request.contextPath}/InsertUser" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
 
   <h2 class="text-center mb-4">Create Your Blog</h2><br>
 
   <div class="mb-3">
     <label for="name" class="form-label">University Name</label>
-    <input type="text" class="form-control" id="name" name="uniname"  value="<%= user.getUniname() %>"   placeholder="Enter Your Name" required>
+    <input type="text" class="form-control" id="name" name="uniname"  value="<%= user.getUniname() %>" readonly  placeholder="Enter Your Name" required>
   </div>
 
   <div class="mb-3">
     <label for="location" class="form-label">Location</label>
-    <input type="text" class="form-control" id="location" name="location"  value="<%=user.getLocation() %>" placeholder="Enter Your location" required>
+    <input type="text" class="form-control" id="location" name="location" readonly value="<%=user.getLocation() %>" placeholder="Enter Your location" required>
   </div>
   
   <div class="mb-3">
@@ -62,7 +62,7 @@
   
     <div class="mb-3">
     <label for="link" class="form-label">Link</label>
-    <input type="text" class="form-control" id="link" name="link"  value="<%= userId %>" placeholder="Enter Your link" required>
+    <input type="text" class="form-control" id="link" name="link" readonly value="<%= userId %>" placeholder="Enter Your link" required>
   </div>
   
   <div class="mb-3">
@@ -72,6 +72,7 @@
   <div class="mb-3 text-center">
     <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
   </div>
+  
 </form>
   </div>
 

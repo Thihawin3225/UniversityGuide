@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html;  charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="crud.User" %>
 <%@ page import="crud.UserDAO" %>
@@ -17,30 +16,23 @@ List<User> userList;
 
 if (msearchQuery != null && msearchQuery.isEmpty()) {
     userList = new UserDAO().searchUniNameAndLocation(unisearchQuery, lsearchQuery);// not include mark
-}  else if(unisearchQuery != null && unisearchQuery.isEmpty()){
-	userList =  new UserDAO().searchLocationAndMark(lsearchQuery, msearchQuery);// not include  uniname
-}else if(
-		msearchQuery != null && !msearchQuery.isEmpty() &&
-		lsearchQuery != null && !lsearchQuery.isEmpty() &&
-		unisearchQuery != null && !unisearchQuery.isEmpty() 
-		){
-	userList = new UserDAO().searchAnd(unisearchQuery, lsearchQuery, msearchQuery);// include all
-}else if(lsearchQuery != null && lsearchQuery.isEmpty()){
-	userList = new UserDAO().searchUniNameAndMark(unisearchQuery, msearchQuery);
-}
-else {
+} else if (unisearchQuery != null && unisearchQuery.isEmpty()) {
+    userList = new UserDAO().searchLocationAndMark(lsearchQuery, msearchQuery);// not include  uniname
+} else if (msearchQuery != null && !msearchQuery.isEmpty() && lsearchQuery != null && !lsearchQuery.isEmpty() && unisearchQuery != null && !unisearchQuery.isEmpty()) {
+    userList = new UserDAO().searchAnd(unisearchQuery, lsearchQuery, msearchQuery);// include all
+} else if (lsearchQuery != null && lsearchQuery.isEmpty()) {
+    userList = new UserDAO().searchUniNameAndMark(unisearchQuery, msearchQuery);
+} else {
     userList = new UserDAO().getAllUsers();
 }
 %>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Widgets</title>
+  <title>Search</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -67,7 +59,6 @@ else {
         <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
-    
   </nav>
   <!-- /.navbar -->
 	
@@ -76,7 +67,7 @@ else {
     <!-- Brand Logo -->
     <a href="../index3.html" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light"> University Guide</span>
     </a>
 
     <!-- Sidebar -->
@@ -87,7 +78,7 @@ else {
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">University</a>
         </div>
       </div>
 
@@ -127,7 +118,6 @@ else {
               </p>
             </a>
             <ul class="nav nav-treeview">
-
               <li class="nav-item">
                 <a href="three.jsp" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -149,7 +139,7 @@ else {
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h2 class="text-center display-4">UniName Search</h2>
+            <br><br>
             <form action="" method="get">
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -164,7 +154,7 @@ else {
                                 
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group d-flex justify-content-between">
                             <div class="input-group input-group-lg">
                                 <input type="search" class="form-control form-control-lg" name="unisearch" placeholder="Enter UniName" value="">
                                 <div class="input-group-append">
@@ -173,6 +163,7 @@ else {
                                     </button>
                                 </div>
                             </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="input-group input-group-lg">
                                 <input type="search" class="form-control form-control-lg" name="lsearch" placeholder="Enter Location" value="">
                                 <div class="input-group-append">
@@ -181,6 +172,7 @@ else {
                                     </button>
                                 </div>
                             </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="input-group input-group-lg">
                                 <input type="search" class="form-control form-control-lg" name="msearch" placeholder="Mark" value="">
                                 <div class="input-group-append">
@@ -188,74 +180,72 @@ else {
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-           <div class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Bordered Table</h3>
+        <div class="content">
+            <% if(userList.isEmpty()){ %>
+            <div class="row justify-content-center mt-5"> <!-- Added mt-5 class for top margin -->
+                <div class="col-md-6">
+                    <div class="alert alert-info text-center" role="alert">
+                        Empty
+                    </div>
+                </div>
             </div>
-
-
-         
-            <div class="card-body">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>University Name</th>
-                    <th>Location</th>
-                    <th>Mark</th>
-                    <th>Link</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                   <% for (User user : userList) { %>
-            <tr>
-                <td><%= user.getUniname() %></td>
-                <td><%= user.getLocation() %></td>
-                <td><%= user.getMark() %>
-                <td>
-                <a href="example.jsp?id=<%= user.getLink() %>">Go to page</a>
-                </td>
-                
-</td>
-            </tr>
-        <% } %>
-                </tbody>
-              </table>
-              <br>
-           
+            <%}else{ %>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">University Table</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>University Name</th>
+                                        <th>Location</th>
+                                        <th>Mark</th>
+                                        <th>Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (User user : userList) { %>
+                                    <tr>
+                                        <td><%= user.getUniname() %></td>
+                                        <td><%= user.getLocation() %></td>
+                                        <td><%= user.getMark() %></td>
+                                        <td>
+                                            <a href="example.jsp?id=<%= user.getLink() %>">Go to page</a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.card-body -->
-          </div>
+            <% } %>
         </div>
-      </div>
-    </div>
     </section>
-  </div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
+</div>
+<footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b><a href="../loginAndregister/login.jsp" class="btn btn-primary">Go Admin</a></b>
+        <b><a href="../loginAndregister/login.jsp" class="btn btn-primary">Go Admin</a></b>
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+</footer>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+</aside>
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

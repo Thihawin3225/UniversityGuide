@@ -143,12 +143,12 @@ public class UserDAO {
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT * FROM user WHERE uniname LIKE ? OR location LIKE ? OR mark LIKE ? OR link LIKE ?")) {
+                     "SELECT * FROM user WHERE uniname LIKE ? OR location LIKE ? OR mark < ? OR link LIKE ?")) {
 
             // Use '%searchQuery%' to perform a partial match
             preparedStatement.setString(1, "%" + searchQuery + "%");
             preparedStatement.setString(2, "%" + searchQuery + "%");
-            preparedStatement.setString(3, "%" + searchQuery + "%");
+            preparedStatement.setString(3,   searchQuery );
             preparedStatement.setString(4, "%" + searchQuery + "%");
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

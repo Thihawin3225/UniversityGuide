@@ -27,6 +27,10 @@
     form div{
         margin : 10px;
     }
+    img{
+    width: 100px;
+    }
+    
 </style>
 <body>
 
@@ -51,22 +55,27 @@
         <label for="mark" class="form-label">Description</label>
         <textarea class="form-control" id="Mark" name="desc" placeholder="Enter Your desc" required><%= user.getDesc() %></textarea>
     </div>
+			<div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <img src="../../img/<%= user.getImage() %>" />
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+            <div class="mb-3">
+                <label for="logo" class="form-label">Logo</label>
+                <img src="../../img/<%= user.getLogo() %>" />
+                <input type="file" class="form-control" id="logo" name="logo">
+            </div>
 
-    <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input type="file" class="form-control" id="image" name="image" required>
-    </div>
 
-    <div class="mb-3">
-        <label for="logo" class="form-label">Logo</label>
-        <input type="file" class="form-control" id="logo" name="logo" required>
-    </div>
 
     <!-- Other form fields... -->
 
     <div class="mb-3">
         <button type="submit" class="btn btn-primary btn-block">Update</button>
     </div>
+      <div class="mb-3 text-center">
+    <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
+  </div>
 </form>
 
 	

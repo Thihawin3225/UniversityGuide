@@ -24,6 +24,14 @@ public class pageUser {
 		this.logo = logo;
 		this.image = image;
 	}
+	
+	public pageUser(int id, String uniname, String location, String desc) {
+		super();
+		this.id = id;
+		this.uniname = uniname;
+		this.location = location;
+		this.desc = desc;
+	}
 	public int getId() {
 		return id;
 	}

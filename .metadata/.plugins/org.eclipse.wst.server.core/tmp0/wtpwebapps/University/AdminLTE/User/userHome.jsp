@@ -9,12 +9,7 @@
 List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 
 %>
-<%
-	HttpSession aa = request.getSession();
-	if(aa.getAttribute("name") == null){
-		response.sendRedirect("login.jsp");
-	} 
-%>
+
 
 
 <!DOCTYPE html>
@@ -22,7 +17,7 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Widgets</title>
+  <title>University Guide</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -100,7 +95,7 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
             </ul>
           </li>
           <%} %>
-                   <li class="nav-item">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>

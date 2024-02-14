@@ -20,7 +20,7 @@ import javax.servlet.http.Part;
 /**
  * Servlet implementation class InsertUser
  */
-@WebServlet("/pageInsertUser")
+@WebServlet("/pageInsert")
 @MultipartConfig(
 	    fileSizeThreshold = 1024 * 1024 * 2,  // 2MB
 	    maxFileSize = 1024 * 1024 * 10,        // 10MB

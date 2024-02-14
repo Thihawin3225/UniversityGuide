@@ -23,6 +23,7 @@
 <%
 	
     List<User> check = new UserDAO().getAllUsers();
+
     
     // Initialize linkData array with the size of check list
     String[] linkData = new String[check.size()];
@@ -83,10 +84,10 @@
     </ul>
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="index3.html" class="brand-link">
+    <a href="" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">
-        Blog
+        University Guide
       </span>
     </a>
     <div class="sidebar">
@@ -96,7 +97,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">
-            Name
+            Admin
           </a>
         </div>
       </div>
@@ -151,21 +152,37 @@
               Create Page 
           </a>
 
-
+	<%
+    if (!userList.isEmpty()) {
+         %>
           <div class="float-right d-none d-sm-inline">
-      <a href="${pageContext.request.contextPath}/DeleteAll" type="button" class="btn btn-danger">
-        DeleteAll
-      </a>
+      <a href="${pageContext.request.contextPath}/DeleteAll" onclick="alert('Are you sure you want to delete all?');" type="button" class="btn btn-danger">
+  DeleteAll
+</a>
     </div>
+    <%} %>
           
       </div>
     </div>
     <div class="content">
+    <%
+    if (userList.isEmpty()) {
+         %>
+         <div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="alert alert-info text-center" role="alert">
+      No data available.
+    </div>
+  </div>
+</div>
+        <% 
+    } else {
+    %>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Bordered Table</h3>
+              <h3 class="card-title">Page Create Blog</h3>
             </div>
 
 
@@ -196,37 +213,38 @@
                 <td><%= user.getId() %></td>
                 <td><%= user.getUniname() %></td>
                 <td><%= user.getLocation() %></td>
-                <td><%= desc %>...</td>
+                <td><%= desc.substring(0,10) %>...</td>
                 <td><%= user.getLogo() %></td>
                 <td><%= user.getImage() %></td>
               <%
-    // Ensure j is properly initialized and within bounds
     
-    // Iterate through linkData
     if(j < linkData.length) {
             if (Integer.toString(user.getId()).equals(linkData[j])) {
 %>
                 <td><a href="">Finished</a></td>
+                <td><a href="edit.jsp?id=<%= user.getId()%>">Edit</a>
+                <a href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>
+                
+	</td>
 <%
             
         } else {
 %>
             <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
-<%
-        
-        
-    }
+            
+            
+<%      }
     }else{
              
 %>
 <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
+<td>
+                <a href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>   
+		</td>
 <%} %>
               
                
-                <td><a href="edit.jsp?id=<%= user.getId()%>">Edit</a>
-                <a href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>
                 
-	</td>
             </tr>
         <% j++;} %>
                 </tbody>
@@ -236,7 +254,8 @@
           </div>
         </div>
       </div>
-
+<%System.out.println("The list contains data.");
+                   } %>
     </div>
   </div>
   <aside class="control-sidebar control-sidebar-dark">

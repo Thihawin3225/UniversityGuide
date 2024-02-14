@@ -27,7 +27,7 @@
 <body>
 
 <div class="container">
-	<form action="${pageContext.request.contextPath}/pageInsertUser" method="post" accept-charset="UTF-8" enctype="multipart/form-data" class="border p-4 rounded bg-light">
+	<form action="${pageContext.request.contextPath}/pageInsert" method="post" accept-charset="UTF-8" enctype="multipart/form-data" class="border p-4 rounded bg-light">
     <h2 class="text-center mb-4">Create Your Blog</h2><br>
   <div class="mb-3">
     <label for="name" class="form-label">University Name</label>
@@ -59,6 +59,9 @@
     <div class="mb-3">
         <button type="submit" class="btn btn-primary btn-block">Add</button>
     </div>
+      <div class="mb-3 text-center">
+    <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
+  </div>
 </form>
 	
 

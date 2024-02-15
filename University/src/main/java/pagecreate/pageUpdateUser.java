@@ -35,6 +35,7 @@ public class pageUpdateUser extends HttpServlet {
 	        try {
 	            Part file = request.getPart("image");
 	            Part logofile = request.getPart("logo");
+	            
 	            if (file != null && file.getSize() > 0 && logofile != null && logofile.getSize() > 0) {
 		        	imageFileName = file.getSubmittedFileName();
 		            logoFileName = logofile.getSubmittedFileName();
@@ -83,7 +84,70 @@ public class pageUpdateUser extends HttpServlet {
 		 	     pageUserDAO userDAO = new pageUserDAO();
 		 	      userDAO.updateUser(user);
 		 	     response.sendRedirect("AdminLTE/loginAndregister/edit.jsp?id="+id);
-		        } else {
+		        }else if (file != null && file.getSize() > 0 && (logofile == null || logofile.getSize() == 0)) {
+		            // Process when only image file is provided
+		            imageFileName = file.getSubmittedFileName();
+		            String uploadDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" + File.separator + 
+		                "Desktop" + File.separator + "UniversityGuide" + File.separator + "University" + File.separator + 
+		                "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img" + File.separator + imageFileName;
+
+		            // Check if the image file already exists
+		            File existingImageFile = new File(uploadDirectory);
+		            if (existingImageFile.exists()) {
+		                // Handle the case where the image file already exists
+		            }
+
+		            try (FileOutputStream fos = new FileOutputStream(uploadDirectory);
+		                 InputStream is = file.getInputStream()) {
+		                byte[] data = new byte[is.available()];
+		                is.read(data);
+		                fos.write(data);
+		            }
+
+		            String uniname = request.getParameter("uniname");
+		            String location = request.getParameter("location");
+		            String description = request.getParameter("desc");
+		            int id = Integer.parseInt(request.getParameter("id"));
+
+		            // Create a new User object
+		            pageUser user = new pageUser(id, uniname, location, description, imageFileName);
+		            // Insert the user into the database
+		            pageUserDAO userDAO = new pageUserDAO();
+		            userDAO.updateUserimage(user);
+		            response.sendRedirect("AdminLTE/loginAndregister/edit.jsp?id=" + id);
+		        }else if(logofile != null && logofile.getSize() > 0 && (file == null || file.getSize() == 0)) {
+		        	System.out.print("hello");
+	            	logoFileName = logofile.getSubmittedFileName();
+	                String uploadlogoDirectory = "C:" + File.separator + "Users" + File.separator + "Acer" + File.separator + 
+	                    "Desktop" + File.separator + "UniversityGuide" + File.separator + "University" + File.separator + 
+	                    "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img"+ File.separator + logoFileName;
+
+	                // Check if the logo file already exists
+	                File existinglogoFile = new File(uploadlogoDirectory);
+	                if (existinglogoFile.exists()) {
+	                    // Handle the case where the logo file already exists
+	                }
+
+	                try (FileOutputStream foslogo = new FileOutputStream(uploadlogoDirectory);
+	                     InputStream is = logofile.getInputStream()) {
+
+	                    byte[] data = new byte[is.available()];
+	                    is.read(data);
+	                    foslogo.write(data);
+	                }
+
+	                String uniname = request.getParameter("uniname");
+	                String location = request.getParameter("location");
+	                String description = request.getParameter("desc");
+	                int id = Integer.parseInt(request.getParameter("id"));
+	                int id1 = 0;
+	                // Create a new User object
+	                pageUser user = new pageUser(id, uniname, location, description, logoFileName,id1 ); // Set imageFileName to null
+	                // Insert the user into the database
+	                pageUserDAO userDAO = new pageUserDAO();
+	                userDAO.updateUserlogo(user);
+	                response.sendRedirect("AdminLTE/loginAndregister/edit.jsp?id="+id);
+		        }else {
 		        	int id = Integer.parseInt(request.getParameter("id"));
 		            
 		            // Get other user information from the request parameters

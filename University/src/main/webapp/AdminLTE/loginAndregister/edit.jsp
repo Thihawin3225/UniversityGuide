@@ -48,7 +48,7 @@ List<User> aa = new UserDAO().getAllUsers();
 <body>
 
 <div class="container">
-<form action="${pageContext.request.contextPath}/update" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
+<form action="${pageContext.request.contextPath}/UpdateUser" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
   <h2 class="text-center mb-4">Create Mark Blog</h2><br>
 	<input type="hidden" name="id" value="<%= user.getId()%>"/>
   <div class="mb-3">

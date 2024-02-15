@@ -28,8 +28,7 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-
-     <form action="${pageContext.request.contextPath}/loginServlet" method="post">
+     <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="Email">
           <div class="input-group-append">
@@ -54,7 +53,7 @@
 
     </div>
   </div>
-</div>
+
 <script src="../plugins/jquery/jquery.min.js"></script>
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../dist/js/adminlte.min.js"></script>

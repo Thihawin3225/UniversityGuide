@@ -31,7 +31,9 @@ public class InsertUser extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	response.setContentType("text/html");
     	request.setCharacterEncoding("UTF-8");
+    	
         String imageFileName = "";
         String logoFileName = "";
         PrintWriter out = response.getWriter();
@@ -98,10 +100,12 @@ public class InsertUser extends HttpServlet {
     	 }
      }
      if(bol) {
-    	 response.sendRedirect("AdminLTE/PageCreate/home.jsp");
+    	 out.println("<script>alert('data have been added')</script>");
+    	 out.println("<script>setTimeout(function() { window.location.href = 'AdminLTE/PageCreate/add.jsp'; }, 1000);</script>");
      }else {
     	 userDAO.insertUser(user);
-    	    response.sendRedirect("AdminLTE/PageCreate/home.jsp");
+    	 out.println("<script>alert('Successful')</script>");
+    	 out.println("<script>setTimeout(function() { window.location.href = 'AdminLTE/PageCreate/home.jsp'; }, 1);</script>");
      }
      
 

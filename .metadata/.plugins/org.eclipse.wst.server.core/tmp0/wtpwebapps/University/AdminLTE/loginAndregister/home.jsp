@@ -133,7 +133,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             </ul>
           </li>
-                   
+                <li class="nav-item">
+            <a href="../loginAndregister/logout.jsp" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Logout
+                
+              </p>
+            </a>
+          </li>   
             </ul>
       </nav>
       <!-- /.sidebar-menu -->

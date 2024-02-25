@@ -130,6 +130,15 @@
 
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="../loginAndregister/logout.jsp" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Logout
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
                    
             </ul>
       </nav>
@@ -213,7 +222,7 @@
                 <td><%= user.getId() %></td>
                 <td><%= user.getUniname() %></td>
                 <td><%= user.getLocation() %></td>
-                <td><%= desc.substring(0,10) %>...</td>
+                <td><%= desc.substring(0,1) %>...</td>
                 <td><%= user.getLogo() %></td>
                 <td><%= user.getImage() %></td>
               <%
@@ -230,6 +239,7 @@
             
         } else {
 %>
+			
             <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
             
             
@@ -239,6 +249,7 @@
 %>
 <td><a href="../loginAndregister/add.jsp?id=<%= user.getId() %>">Add</a></td>
 <td>
+<a href="editpage.jsp?id=<%= user.getId()%>">Edit</a>
                 <a href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>   
 		</td>
 <%} %>
@@ -272,7 +283,7 @@
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       <a href="../loginAndregister/logout.jsp" type="button" class="btn btn-danger">
-        Logout
+        BLogout
       </a>
     </div>
     <!-- Default to the left -->

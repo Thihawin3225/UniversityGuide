@@ -28,6 +28,34 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
+<style>
+.main-footer {
+    background-color: #198057;
+    color: #FFFFFF;
+}
+.form-control::placeholder {
+  font-size: 0.95rem; /* Change this value to your desired font size */
+}
+[class*=sidebar-dark-] {
+    background-color: #568a54;
+}
+[class*=sidebar-dark-] .sidebar a {
+    color: #FFFFFF;
+}
+.content-wrapper {
+    background-color: white;
+}
+.card-header {
+    background-color: #229985;
+
+}  
+.card-title {
+    color: white;
+}
+    
+   
+    
+</style>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -53,7 +81,7 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
     <!-- Brand Logo -->
     <a href="../index3.html" class="brand-link">
       <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">University Guide</span>
     </a>
 
     <!-- Sidebar -->
@@ -64,7 +92,7 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">University Guide</a>
         </div>
       </div>
 
@@ -74,7 +102,8 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
           <% for(String a : distinctUniNames){ %>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-university nav-icon"></i>
+              
               <p>
                 <%= a %>
                 <i class="right fas fa-angle-left"></i>
@@ -87,7 +116,8 @@ List<String> distinctUniNames = new pageUserDAO().getDistinctUniNames();
             <% for(pageUser user : userList) {%>
               <li class="nav-item">
                 <a href="example.jsp?id=<%= user.getId()%>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                 <i class="fas fa-map-marker-alt nav-icon"></i>
+                 
                   <p><%= user.getLocation() %></p>
                 </a>
               </li>

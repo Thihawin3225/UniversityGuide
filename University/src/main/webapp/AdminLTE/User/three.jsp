@@ -43,6 +43,31 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
+<style>
+.main-footer {
+    background-color: #198057;
+    color: #FFFFFF;
+}
+.form-control::placeholder {
+  font-size: 0.95rem; /* Change this value to your desired font size */
+}
+[class*=sidebar-dark-] {
+    background-color: #568a54;
+}
+[class*=sidebar-dark-] .sidebar a {
+    color: #FFFFFF;
+}
+.content-wrapper {
+    background-color: white;
+}
+.card-header {
+    background-color: #229985;
+
+}  
+.card-title {
+    color: white;
+}
+</style>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -88,7 +113,7 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
          <% for(String a : distinctUniNames){ %>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-university nav-icon"></i>
               <p>
                 <%= a %>
                 <i class="right fas fa-angle-left"></i>
@@ -101,7 +126,7 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
             <% for(pageUser user : userdata) {%>
               <li class="nav-item">
                 <a href="example.jsp?id=<%= user.getId()%>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-map-marker-alt nav-icon"></i>
                   <p><%= user.getLocation() %></p>
                 </a>
               </li>
@@ -137,12 +162,13 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
   <!-- Content Wrapper. Contains page content -->
    <div class="content-wrapper">
     <!-- Main content -->
+    <br> <br> <br>
     <section class="content">
         <div class="container-fluid">
-            <br><br>
-            <form action="" method="get">
+          
+            <form action="" class="search" method="get">
                 <div class="row">
-                    <div class="col-md-10 offset-md-1">
+                    <div class="col-md-10  offset-md-1">
                         <div class="row">
                             <div class="col-6">
                                 
@@ -156,7 +182,7 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
                         </div>
                         <div class="form-group d-flex justify-content-between">
                             <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" name="unisearch" placeholder="Enter UniName" value="">
+                                <input type="search" class="form-control form-control-lg" name="unisearch" placeholder="တက္ကသိုလ်အမည်ရိုက်ထည့်ရန်" value="">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -165,7 +191,7 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" name="lsearch" placeholder="Enter Location" value="">
+                                <input type="search" class="form-control form-control-lg" name="lsearch" placeholder="တည်နေရာရိုက်ထည့်ရန် " value="">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -174,7 +200,7 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" name="msearch" placeholder="Mark" value="">
+                                <input type="search" class="form-control form-control-lg" name="msearch" placeholder="အမှတ်ရိုက်ထည့်ရန်" value="">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -186,12 +212,16 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
                 </div>
             </form>
         </div>
+        <br>
+        <br>
+        
+        <br>
         <div class="content">
             <% if(userList.isEmpty()){ %>
             <div class="row justify-content-center mt-5"> <!-- Added mt-5 class for top margin -->
                 <div class="col-md-6">
                     <div class="alert alert-info text-center" role="alert">
-                        Empty
+                        ပြသရန်မရှိပါ
                     </div>
                 </div>
             </div>
@@ -200,15 +230,15 @@ if (msearchQuery != null && msearchQuery.isEmpty()) {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">University Table</h3>
+                            <h3 class="card-title">ဝင်ခွင့်တက္ကသိုလ်အမှတ်ပြဇယား</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
+                            <table class="table table-striped ">
                                 <thead>
                                     <tr>
-                                        <th>University Name</th>
-                                        <th>Location</th>
-                                        <th>Mark</th>
+                                        <th>တက္ကသိုလ် အမည်</th>
+                                        <th>တည်နေရာ</th>
+                                        <th>ဝင်ခွင့်အမှတ်</th>
                                         <th>Link</th>
                                     </tr>
                                 </thead>

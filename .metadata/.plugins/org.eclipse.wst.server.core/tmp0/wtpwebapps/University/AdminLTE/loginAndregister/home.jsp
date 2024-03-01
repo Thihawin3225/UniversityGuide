@@ -156,7 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
+            <h1 class="m-0"></h1>
           </div>
           <br>
         </div>
@@ -172,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="alert alert-info text-center" role="alert">
-      Empty
+      ပြသရန်မရှိပါ
       <a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/add.jsp" class="nav-link">Create</a>
     </div>
   </div>
@@ -183,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Mark Create Blog</h3>
+              <h3 class="card-title">တက္ကသိုလ်ဝင်ခွင့်အမှတ်များ</h3>
             </div>
 
 
@@ -192,10 +192,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th style="width: 10px">id</th>
-                    <th>University Name</th>
-                    <th>Location</th>
-                    <th>Mark</th>
+                    <th style="width: 20px">အမှတ်စဉ်</th>
+                    <th>တက္ကသိုလ် အမည်</th>
+                    <th>တည်နေရာ</th>
+                    <th>ဝင်ခွင့်အမှတ်</th>
                     <th>Link</th>
                     <th style="width: 40px">Action</th>
                   </tr>

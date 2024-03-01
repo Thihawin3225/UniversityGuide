@@ -82,6 +82,37 @@ public class pageUserDAO {
 
         return userList;
     }
+    
+    public List<pageUser> getUsersByPage(int startIndex, int endIndex) {
+        List<pageUser> userList = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM pageUser LIMIT ?, ?")) {
+
+            preparedStatement.setInt(1, startIndex);
+            preparedStatement.setInt(2, endIndex - startIndex);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String uniname = resultSet.getString("uniname");
+                    String location = resultSet.getString("location");
+                    String desc = resultSet.getString("description");
+                    String logo = resultSet.getString("logo");
+                    String image = resultSet.getString("image");
+
+                    pageUser user = new pageUser(id, uniname, location, desc, logo, image);
+                    userList.add(user);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (log, throw a custom exception, etc.)
+        }
+
+        return userList;
+    }
 
     public List<pageUser> searchUsers(String searchQuery) {
         List<pageUser> userList = new ArrayList<>();

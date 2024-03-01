@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="pagecreate.pageUser" %>
+<%@ page import="pagecreate.pageUserDAO" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+int userId = Integer.parseInt(request.getParameter("id"));
+pageUser user = new pageUserDAO().getUserById(userId);
+String[] paragraphArray = user.getDesc().split("\\n");
+%>
+<% 
+    for (String paragraph : paragraphArray) {
+%>
+    <p><%= paragraph %></p>
+<%
+}
+%>

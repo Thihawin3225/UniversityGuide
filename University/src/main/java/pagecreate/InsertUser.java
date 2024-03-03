@@ -101,11 +101,12 @@ public class InsertUser extends HttpServlet {
      }
      if(bol) {
     	 out.println("<script>alert('data have been added')</script>");
-    	 out.println("<script>setTimeout(function() { window.location.href = 'AdminLTE/PageCreate/add.jsp'; }, 1000);</script>");
-     }else {
-    	 userDAO.insertUser(user);
+    	 out.println("<script>setTimeout(function() { window.location.href = 'AdminLTE/PageCreate/add.jsp?id=" + user.getId() + "'; }, 1000);</script>");
+
+     }else {    	 
+
     	 out.println("<script>alert('Successful')</script>");
-    	 out.println("<script>setTimeout(function() { window.location.href = 'AdminLTE/PageCreate/home.jsp'; }, 1);</script>");
+    	 out.println("<script>setTimeout(function() { window.location.href = 'AdminLTE/loginAndregister/add.jsp?id=" + userDAO.insertUserAndGetLastInsertedId(user) + "'; }, 1000);</script>");
      }
      
 

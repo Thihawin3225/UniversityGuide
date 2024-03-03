@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/InsertUser")
+@WebServlet("/Insert")
 public class InsertUser extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +25,7 @@ public class InsertUser extends HttpServlet {
         User user = new User(uniname, location, mark, link);
         UserDAO userDAO = new UserDAO();
         userDAO.insertUser(user);
-
+        
         response.sendRedirect("AdminLTE/loginAndregister/home.jsp");
     }
 }

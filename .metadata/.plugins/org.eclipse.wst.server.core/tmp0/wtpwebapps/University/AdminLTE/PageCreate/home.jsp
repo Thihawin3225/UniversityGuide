@@ -24,12 +24,14 @@ List<User> check = new UserDAO().getAllUsers();
 // Initialize linkData array with the size of check list
 String[] linkData = new String[check.size()];
 
+
 // Loop through each user and add their link to linkData array
 int i = 0;
 for (User a : check) {
 	linkData[i] = a.getLink();
 	i++;
 }
+
 %>
 
 
@@ -151,9 +153,8 @@ for (User a : check) {
 				</div>
 				<div>
 
-					<a
-						href="${pageContext.request.contextPath}/AdminLTE/PageCreate/add.jsp"
-						class="btn btn-warning"> စာမျက်နှာအသစ်တစ်ခုဖန်တီးရန် </a>
+<a href="${pageContext.request.contextPath}/AdminLTE/PageCreate/add.jsp?id=<%= userList.size() %>" class="btn btn-warning"> စာမျက်နှာအသစ်တစ်ခုဖန်တီးရန် </a>
+
 
 					<%
 					if (!userList.isEmpty()) {
@@ -201,7 +202,6 @@ for (User a : check) {
 											<th>ဖော်ပြချက်</th>
 											<th>logo</th>
 											<th>ဓာတ်ပုံ</th>
-											<th >ဝင်ခွင့်အမှတ်ထည့်ရန်</th>
 											<th style="width: 40px">Action</th>
 										</tr>
 									</thead>
@@ -218,42 +218,17 @@ for (User a : check) {
 											<td><%=user.getUniname()%></td>
 											<td><%=user.getLocation()%></td>
 											<td>
-												<% if (desc != null && desc.length() > 50) { %> <%= desc.substring(0, 50) %>...
+												<% if (desc != null && desc.length() > 50) { %> <%= desc.substring(0, 20) %>...
 												<% } else { %> <%= desc %> <% } %>
 											</td>
 											<td><%=user.getLogo()%></td>
 											<td><%=user.getImage()%></td>
-											<%
-											if (j < linkData.length) {
-												if (Integer.toString(user.getId()).equals(linkData[j])) {
-											%>
-											<td><p>အမှတ်ထည့်ပြီးပါ​ပြီ။</p></td>
-											<td><a href="edit.jsp?id=<%=user.getId()%>">Edit</a> <a
-												onclick="alert('Are You Sure?');"
-												href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>
-
-											</td>
-											<%
-											} else {
-											%>
-
-											<td><a href="../loginAndregister/add.jsp?id=<%=user.getId()%>">အမှတ်ထည့်ရန် </a></td>
-
-
-											<%
-											}
-											} else {
-											%>
-											<td><a
-												href="../loginAndregister/add.jsp?id=<%=user.getId()%>">အမှတ်ထည့်ရန် </a></td>
-											<td><a href="editpage.jsp?id=<%=user.getId()%>">Edit</a>
+											<td><a href="edit.jsp?id=<%=user.getId()%>">Edit</a>
 												<a
 												onclick="alert('Are you sure you want to delete ?');"
 												href="${pageContext.request.contextPath}/pageDeleteUser?id=<%= user.getId() %>">Delete</a>
 											</td>
-											<%
-											}
-											%>
+										
 
 
 

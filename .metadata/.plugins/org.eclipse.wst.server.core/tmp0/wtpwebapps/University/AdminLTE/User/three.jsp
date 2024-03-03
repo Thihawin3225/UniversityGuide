@@ -14,19 +14,11 @@ String lsearchQuery = request.getParameter("lsearch");
 String msearchQuery = request.getParameter("msearch");
 List<User> userList;
 
-if (msearchQuery != null && msearchQuery.isEmpty()) {
-    userList = new UserDAO().searchUniNameAndLocation(unisearchQuery, lsearchQuery);// not include mark
-} else if (unisearchQuery != null && unisearchQuery.isEmpty()) {
-    userList = new UserDAO().searchLocationAndMark(lsearchQuery, msearchQuery);// not include  uniname
-} else if (msearchQuery != null && !msearchQuery.isEmpty() && lsearchQuery != null && !lsearchQuery.isEmpty() && unisearchQuery != null && !unisearchQuery.isEmpty()) {
-    userList = new UserDAO().searchAnd(unisearchQuery, lsearchQuery, msearchQuery);// include all
-} else if (lsearchQuery != null && lsearchQuery.isEmpty()) {
-    userList = new UserDAO().searchUniNameAndMark(unisearchQuery, msearchQuery);
-} else {
-    userList = new UserDAO().getAllUsers();
-}
-%>
 
+userList = new UserDAO().getAllUsers();
+%>
+<%
+for(User a: userList){System.out.println("" +a.getUniname());}%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

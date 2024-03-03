@@ -41,7 +41,7 @@
 <body>
 
 <div class="container">
-<form action="${pageContext.request.contextPath}/InsertUser" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
+<form action="${pageContext.request.contextPath}/Insert" method="post" accept-charset="UTF-8" class="border p-4 rounded bg-light">
 
   <h2 class="text-center mb-4">Create Your Blog</h2><br>
 
@@ -69,9 +69,7 @@
     <button type="submit" class="btn btn-primary btn-block">Add</button>
   </div>
 
-  <div class="mb-3 text-center">
-    <a href="home.jsp" class="btn btn-danger btn-block">Back</a>
-  </div>
+
   
 </form>
   </div>

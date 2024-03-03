@@ -25,6 +25,6 @@ public class pageDeleteUser extends HttpServlet {
         userDAO.deleteUser(userId);
 
         // Redirect to the user list page or any other page you desire
-        response.sendRedirect("delete?id="+userId);
+        response.sendRedirect("deleteMark?id="+userId);
     }
 }
